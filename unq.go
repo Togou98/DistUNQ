@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 	"errors"
-	"fmt"  //debug
+	"log"  //debug
 )
 const(
 	Timebit40 = 40
@@ -63,7 +63,7 @@ func(d *DistUNQ)NextID()(uint64,error){
 	return d.iD()
 }
 func(d *DistUNQ)iD()(uint64,error){
-	if d.elapsedtime > (1 << 40) {
+	if d.elapsedtime > (1 << Timebit40) {
 		return 0, errors.New("Oh, my God! It's the end of the world! ")
 	}
 	return uint64(d.elapsedtime)<<(IPbit8+Truncpid5+Seqnumbit11) |
@@ -91,7 +91,7 @@ func getrealip()(uint8,error){
 			fmtip := ip.IP.To4()
 			fmt.Println(fmtip)
 			if checkip(fmtip){
-				fmt.Println("IP last 8 bit :",uint8(fmtip[3]))
+				log.Println("IP last 8 bit :",uint8(fmtip[3]))
 				return uint8(fmtip[3]),nil
 			}
 		}
