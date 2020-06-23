@@ -77,7 +77,7 @@ func elapsedtime(starttime int64)int64{
 func truncatepid()uint8{
 	tpid := os.Getpid()
 	tpid %= 32
-	fmt.Println("TPID :",tpid)
+	//fmt.Println("TPID :",tpid)
 	return uint8(tpid)
 }
 func getrealip()(uint8,error){
@@ -89,7 +89,7 @@ func getrealip()(uint8,error){
 		ip,ok := i.(*net.IPNet)
 		if ok &&  !ip.IP.IsLoopback(){
 			fmtip := ip.IP.To4()
-			fmt.Println(fmtip)
+			//fmt.Println(fmtip)
 			if checkip(fmtip){
 				log.Println("IP last 8 bit :",uint8(fmtip[3]))
 				return uint8(fmtip[3]),nil
